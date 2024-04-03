@@ -64,27 +64,40 @@ function zad4() {
     centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
     popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
     and more recently with desktop publishing software like Aldus PageMaker including versions of
-    Lorem Ipsum.")
+    Lorem Ipsum.");
     $j = 0;
     $newArray = array();
-    for($i=0;$i<$wordArray-1-$j;++$i) {
+    for($i=0;$i<count($wordArray)-1-$j;++$i) {
         if(checkForSpecial($wordArray[$i])) {
             ++$j;
             continue;
         }
-        $wordArray[$i-$j] = $wordArray[$i];
+        $newArray[$i-$j] = trim($wordArray[$i]);
     }
 
-
+    $key = "";
+    $associativeArray = array();
+    foreach($newArray as $value) {
+        if(strlen($value)<=0) {
+            continue;
+        }
+        if($key==="") {
+            $key = $value;
+        } else {
+            $associativeArray[$key] = $value;
+            echo $key."-->".$value."\n";
+            $key = "";
+        }
+    }
 }
 
 function checkForSpecial($value) {
-    for($i=0;i<strlen($value);++$i) {
-        if($value === "," || $value === "." || $value === "'") {
-            return false;
+    for($i=0;$i<strlen($value);++$i) {
+        if($value[$i] === "," || $value[$i] === "." || $value[$i] === "'") {
+            return true;
         }
-        return true;
     }
+    return false;
 }
 
 zad4();
