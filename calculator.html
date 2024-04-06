@@ -10,11 +10,11 @@
         <input type="text" name="num1" placeholder="First number">
         <input type="text" name="num2" placeholder="Second number">
         <select name="operator">
-            <option>None</option>
+            <option value="null">None</option>
             <option value="add">Add</option>
-            <option>Subtract</option>
-            <option>Multiply</option>
-            <option>Divide</option>
+            <option value="subtract">Subtract</option>
+            <option value="multiply">Multiply</option>
+            <option value="divide">Divide</option>
         </select>
         <br>
         <input type="submit" value="Calculate">
@@ -29,7 +29,7 @@
     
         var formData = new FormData(this);
     
-        fetch('zad2.php', {
+        fetch('calculator.php', {
             method: 'POST',
             body: formData
         })
