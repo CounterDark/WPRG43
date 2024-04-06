@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+<div>
+    <h1>Calculator</h1>
+    <form id="calcForm">
+        <input type="text" name="num1" placeholder="First number">
+        <input type="text" name="num2" placeholder="Second number">
+        <select name="operator">
+            <option>None</option>
+            <option value="add">Add</option>
+            <option>Subtract</option>
+            <option>Multiply</option>
+            <option>Divide</option>
+        </select>
+        <br>
+        <input type="submit" value="Calculate">
+        <br>
+        <h1>Result:</h1><br>
+        <h4><div id="result"></div></h4>
+    </form>
+</div>
+<script>
+    document.getElementById('calcForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        fetch('zad2.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('result').innerHTML = data;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+    </script>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    input[type="text"], select {
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 200px;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</html>
