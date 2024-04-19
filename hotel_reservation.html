@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezerwacja Hotelu</title>
+</head>
+<body>
+    <header>
+        <h1>Witamy w Hotelu Paradise</h1>
+    </header>
+
+    <main>
+        
+<form action="reservation.php" method="post">
+    <label for="guestsAmount">Ilość osób:</label>
+    <select id="guestsAmount" name="guests" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <fieldset id="guests">
+        <legend>Dane gości:</legend>
+        <fieldset>
+            <legend>Gość 1:</legend>
+            <label for="firstName1">Imię gościa 1:</label>
+            <input type="text" id="firstName1" name="firstName1" required>
+            <label for="lastName1">Nazwisko gościa 1:</label>
+            <input type="text" id="lastName1" name="lastName1" required>
+        </fieldset>
+    </fieldset>
+
+    <label for="firstName">Imię:</label>
+    <input type="text" id="firstName" name="firstName" required>
+
+    <label for="lastName">Nazwisko:</label>
+    <input type="text" id="lastName" name="lastName" required>
+
+    <label for="address">Adres:</label>
+    <input type="text" id="address" name="address" required>
+
+    <label for="creditCard">Nr karty kredytowej:</label>
+    <input type="text" id="creditCard" name="creditCard" required>
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="stayDate">Data pobytu:</label>
+    <input type="date" id="stayDate" name="stayDate" required>
+    <br>
+    <label for="arrivalTime">Godzina przyjazdu:</label>
+    <input type="time" id="arrivalTime" name="arrivalTime" required>
+    <br>
+    <label for="childBed">Dostawienie łóżka dla dziecka:</label>
+    <input type="checkbox" id="childBed" name="childBed">
+    <br>
+    <fieldset>
+        <legend>Udogodnienia:</legend>
+        <input type="checkbox" id="airConditioning" name="airConditioning">
+        <label for="airConditioning">Klimatyzacja</label><br>
+        <input type="checkbox" id="ashtray" name="ashtray">
+        <label for="ashtray">Popielniczka dla palących</label><br>
+    </fieldset>
+
+    <button type="submit">Zarezerwuj</button>
+</form>
+    </main>
+
+    <footer>
+        <p>&copy; Rezerwacja Hotelu.</p>
+    </footer>
+</body>
+
+<script>
+    document.getElementById('guestsAmount').addEventListener('change', function() {
+        var guestCount = parseInt(this.value);
+        var fieldset = document.getElementById('guests');
+        fieldset.innerHTML = ''; // Clear the fieldset
+
+        const legend = document.createElement('legend');
+        legend.textContent = 'Dane gości:';
+        fieldset.appendChild(legend);
+        for (var i = 1; i <= guestCount; i++) {
+            const guestFieldset = document.createElement('fieldset');
+
+            const guestLegend = document.createElement('legend');
+            guestLegend.textContent = 'Gość ' + i + ':';
+
+            const label1 = document.createElement('label');
+            label1.textContent = 'Imię gościa ' + (i) + ':';
+            const input1 = document.createElement('input');
+            input1.type = 'text';
+            input1.name = 'firstName' + (i);
+            input1.required = true;
+
+            const label2 = document.createElement('label');
+            label2.textContent = 'Nazwisko gościa ' + (i) + ':';
+            const input2 = document.createElement('input');
+            input2.type = 'text';
+            input2.name = 'lastName' + (i);
+            input2.required = true;
+
+            guestFieldset.appendChild(guestLegend);
+            guestFieldset.appendChild(label1);
+            guestFieldset.appendChild(input1);
+            guestFieldset.appendChild(label2);
+            guestFieldset.appendChild(input2);
+            fieldset.appendChild(guestFieldset);
+        }
+    });
+</script>
+
+<style>
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
+</html>
