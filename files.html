@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files</title>
+</head>
+<body>
+    <form action="files.php" method="post">
+        <label for="path">Ścieżka: </label>
+        <input type="text" name="path" required>
+        <br>
+        <label for="filename">Nazwa: </label>
+        <input type="text" name="dirname" required>
+        <br>
+        <label for="type">Typ operacji: </label>
+        <select id="type" name="type">
+            <option value="read">Odczytaj</option>
+            <option value="delete">Usuń</option>
+            <option value="create">Utwórz</option>
+        </select>
+        <button type="submit" name="submit">Wykonaj</button>
+    </form>
+</body>
+</html>
