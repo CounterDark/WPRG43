@@ -1,0 +1,3 @@
+http://google.com/;Google
+https://gdansk.pja.edu.pl/;Pjatk Gdańsk
+https://www.nasa.gov/;NASA
