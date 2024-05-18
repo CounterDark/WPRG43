@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+</head>
+<body>
+    <header>
+        <h1>Counter</h1>
+    </header>
+    <main>
+
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('counter.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('main').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>
