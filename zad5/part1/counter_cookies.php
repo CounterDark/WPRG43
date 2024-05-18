@@ -1,9 +1,14 @@
 <?php
-if (!isset($_COOKIE["counter"])) {
-    setcookie("counter", 0);
+session_start();
+$counter = 0;
+if (isset($_COOKIE["counter"])) {
+    $counter = $_COOKIE["counter"];
 }
-$counter = $_COOKIE["counter"] + 1;
-setcookie("counter" , $counter);
+if (!isset($_SESSION["counter"])) {
+    $counter++;
+    $_SESSION["counter"] = $counter;
+}
+setcookie("counter" , $counter, time() + 60*60*24*365);
 if ($counter == 1) {
     echo "<br>Witaj pierwszy raz na naszej stronie!";
 }
