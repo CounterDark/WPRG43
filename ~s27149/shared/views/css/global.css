@@ -8,8 +8,9 @@ body {
 }
 
 .content-wrapper {
-    width: 80%;
-    height: 90%;
+    width: 90%;
+    margin: 0;
+    height: auto;
 }
 
 .content-wrapper p, h1, h2, h3, h4, h5, h6 {
