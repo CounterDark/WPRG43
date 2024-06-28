@@ -1,0 +1,32 @@
+.register-box {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.register-box input, h1, h2, h3, h4, h5, h6, p{
+    color: #000;
+}
+
+.register-box-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.register-box-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-box-content {
+    margin-bottom: 20px;
+}
+
+.error-box {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}

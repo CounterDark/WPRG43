@@ -1,0 +1,17 @@
+body {
+    background-color: #181f29;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper {
+    width: 80%;
+    height: 90%;
+}
+
+.content-wrapper p, h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
