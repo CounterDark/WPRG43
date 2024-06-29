@@ -20,7 +20,7 @@
             }
             if(str_starts_with($key, 'question')) {
                 if($currentQuestionId !== null) {
-                    $quizElement = new QuizElement($currentQuestionId, $currentQuestion, $answersForQuestion, $correctAnswer);
+                    $quizElement = serialize(new QuizElement($currentQuestionId, $currentQuestion, $answersForQuestion, $correctAnswer));
                     $formData["question".$currentQuestionId] = $quizElement;
                     $lastQuestionId = $currentQuestionId;
                     $answersForQuestion = [];
@@ -40,7 +40,7 @@
             $formData[$key] = $value;
         }
         if($currentQuestionId !== null) {
-            $quizElement = new QuizElement($currentQuestionId, $currentQuestion, $answersForQuestion, $correctAnswer);
+            $quizElement = serialize(new QuizElement($currentQuestionId, $currentQuestion, $answersForQuestion, $correctAnswer));
             $formData["question".$currentQuestionId] = $quizElement;
         }
         return $formData;
