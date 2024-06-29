@@ -3,11 +3,21 @@ if (!isset($_SESSION)) {
     session_start();
     error_log(print_r(session_id(), true));
 }
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+});
+set_exception_handler(function ($e) {
+    error_log($e->getMessage());
+    error_log($e->getTraceAsString());
+    exit();
+});
 require_once __DIR__.'/'.'shared/logic/init_tables.php';
 
 $_SESSION['db_host'] = 'localhost';
-$_SESSION['db_user'] = 's27149';
-$_SESSION['db_pass'] = 'Ale.Kunk';
+$_SESSION['db_user'] = 'root';
+$_SESSION['db_pass'] = '';
 
 $dbhost = $_SESSION['db_host'];
 $dbuser = $_SESSION['db_user'];

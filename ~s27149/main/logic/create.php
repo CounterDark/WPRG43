@@ -19,10 +19,6 @@
 
     $mysqli = new mysqli($dbhost, $dbuser, $dbpass, 's27149');
 
-
-    $_SESSION['success'] = true;
-    header('Location: ./create_quiz.php');
-    exit();
     if(isset($_POST)) {
         $formData = parseCreateQuiz($mysqli, $_POST);
         //check all needed static fields exist
@@ -47,79 +43,77 @@
             exit();
         }
         $quizName = $formData['quiz_name'];
-        //check if quiz with this name already exists
-        // $query = "SELECT * FROM quiz WHERE name = '$quizName' AND author_uid = '$login'";
-        // $result = $mysqli->query($query);
-        // if ($result->num_rows > 0) {
-        //     $_SESSION['error'] = 'Quiz o podanej nazwie już istnieje';
-        //     header('Location: ./create_quiz.php');
-        //     exit();
-        // }
+        // check if quiz with this name already exists
+        $query = "SELECT * FROM quiz WHERE name = '$quizName' AND author_uid = '$login'";
+        $result = $mysqli->query($query);
+        if ($result->num_rows > 0) {
+            $_SESSION['error'] = 'Quiz o podanej nazwie już istnieje';
+            header('Location: ./create_quiz.php');
+            exit();
+        }
         
-        // if ($formData['amount_of_questions'] < 1) {
-        //     $_SESSION['error'] = 'Quiz musi zawierać co najmniej jedno pytanie';
-        //     header('Location: ./create_quiz.php');
-        //     exit();
-        // }
-        // if ($formData['amount_of_questions'] > 15) {
-        //     $_SESSION['error'] = 'Quiz nie może zawierać więcej niż 15 pytań';
-        //     header('Location: ./create_quiz.php');
-        //     exit();
-        // }
+        if ($formData['amount_of_questions'] < 1) {
+            $_SESSION['error'] = 'Quiz musi zawierać co najmniej jedno pytanie';
+            header('Location: ./create_quiz.php');
+            exit();
+        }
+        if ($formData['amount_of_questions'] > 15) {
+            $_SESSION['error'] = 'Quiz nie może zawierać więcej niż 15 pytań';
+            header('Location: ./create_quiz.php');
+            exit();
+        }
         $questionAmount = $formData['amount_of_questions'];
         
-        // $quizElements = [];
-        // for ($i = 1; $i <= $questionAmount; $i++) {
-        //     if (!key_exists("question$i", $formData)) {
-        //         $_SESSION['error'] = 'Wypełnij wszystkie pola w formularzu. Brakujące pola dla pytania: '.$i."\nPytanie $1: ".print_r($formData, true);
-        //         header('Location: ./create_quiz.php');
-        //         exit();
-        //     }
-        //     $questionElem = unserialize($formData['question'.$i]);
-        //     $question = $questionElem->getQuestion();
-        //     if (strlen($question) < 3) {
-        //         $_SESSION['error'] = 'Pytanie musi zawierać co najmniej 3 znaki';
-        //         header('Location: ./create_quiz.php');
-        //         exit();
-        //     }
-        //     if (strlen($question) > 80) {
-        //         $_SESSION['error'] = 'Pytanie nie może zawierać więcej niż 80 znaków';
-        //         header('Location: ./create_quiz.php');
-        //         exit();
-        //     }
-        //     $answers = $questionElem->getAnswers();
-        //     foreach ($answers as $j => $answer) {
-        //         if (strlen($answer) < 1) {
-        //             $_SESSION['error'] = 'Odpowiedź musi zawierać co najmniej 3 znaki';
-        //             header('Location: ./create_quiz.php');
-        //             exit();
-        //         }
-        //         if (strlen($answer) > 45) {
-        //             $_SESSION['error'] = 'Odpowiedź nie może zawierać więcej niż 45 znaków';
-        //             header('Location: ./create_quiz.php');
-        //             exit();
-        //         }
-        //     }
-        //     $correctAnswer = $questionElem->getCorrectAnswer();
-        //     if ($correctAnswer < 1 || $correctAnswer > 4) {
-        //         $_SESSION['error'] = 'Niepoprawna odpowiedź';
-        //         header('Location: ./create_quiz.php');
-        //         exit();
-        //     }
-        //     $quizElements[] = $questionElem;
-        // }
+        $quizElements = [];
+        for ($i = 1; $i <= $questionAmount; $i++) {
+            if (!key_exists("question$i", $formData)) {
+                $_SESSION['error'] = 'Wypełnij wszystkie pola w formularzu. Brakujące pola dla pytania: '.$i."\nPytanie $1: ".print_r($formData, true);
+                header('Location: ./create_quiz.php');
+                exit();
+            }
+            $questionElem = unserialize($formData['question'.$i]);
+            $question = $questionElem->getQuestion();
+            if (strlen($question) < 3) {
+                $_SESSION['error'] = 'Pytanie musi zawierać co najmniej 3 znaki';
+                header('Location: ./create_quiz.php');
+                exit();
+            }
+            if (strlen($question) > 80) {
+                $_SESSION['error'] = 'Pytanie nie może zawierać więcej niż 80 znaków';
+                header('Location: ./create_quiz.php');
+                exit();
+            }
+            $answers = $questionElem->getAnswers();
+            foreach ($answers as $j => $answer) {
+                if (strlen($answer) < 1) {
+                    $_SESSION['error'] = 'Odpowiedź musi zawierać co najmniej 3 znaki';
+                    header('Location: ./create_quiz.php');
+                    exit();
+                }
+                if (strlen($answer) > 45) {
+                    $_SESSION['error'] = 'Odpowiedź nie może zawierać więcej niż 45 znaków';
+                    header('Location: ./create_quiz.php');
+                    exit();
+                }
+            }
+            $correctAnswer = $questionElem->getCorrectAnswer();
+            if ($correctAnswer < 1 || $correctAnswer > 4) {
+                $_SESSION['error'] = 'Niepoprawna odpowiedź';
+                header('Location: ./create_quiz.php');
+                exit();
+            }
+            $quizElements[] = $questionElem;
+        }
 
-        // $json = json_encode($quizElements);
-        // $json = "[{\"test\": \"test\"}]";
-        // if ($json === false) {
-        //     $_SESSION['success'] = false;
-        //     header('Location: ./create_quiz.php');
-        //     exit();
-        // }
-        // $query = "INSERT INTO quiz (name, author_uid, questions, author_name) VALUES ('$quizName', '$login', '$json', '$userName')";
-        // $success = $mysqli->query($query);
-        // $_SESSION['success'] = $success;
-        $_SESSION['success'] = true;
+        $json = json_encode($quizElements);
+        if ($json === false) {
+            $_SESSION['success'] = false;
+            header('Location: ./create_quiz.php');
+            exit();
+        }
+        $query = "INSERT INTO quiz (name, author_uid, questions, author_name) VALUES ('$quizName', '$login', '$json', '$userName')";
+        $success = $mysqli->query($query);
+        $_SESSION['success'] = $success;
         header('Location: ./create_quiz.php');
         exit();
     }
