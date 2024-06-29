@@ -1,6 +1,6 @@
 <?php
-include_once('Product.php');
-include_once('Cart.php');
+require_once('Product.php');
+require_once('Cart.php');
 
 $product1 = new Product("Książka", 20, 1);
 $product2 = new Product("Długopis", 2, 5);
