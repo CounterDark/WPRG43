@@ -51,7 +51,7 @@ function getErrorElem($error_msg)
             columnElem.innerHTML = `
             <div class="question-group">
                 <div class="question-elem">
-                    <label for="question_${i}">Pytanie ${i + 1}:</label>
+                    <label for="question_${i}">Pytanie ${i}:</label>
                     <input type="text" name="question_${i}" id="question_${i}" maxlength="80">
                 </div>
                 <div class="answer-group">
