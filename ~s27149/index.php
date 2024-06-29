@@ -6,8 +6,8 @@ if (!isset($_SESSION)) {
 require_once __DIR__.'/'.'shared/logic/init_tables.php';
 
 $_SESSION['db_host'] = 'localhost';
-$_SESSION['db_user'] = 'root';
-$_SESSION['db_pass'] = '';
+$_SESSION['db_user'] = 's27149';
+$_SESSION['db_pass'] = 'Ale.Kunk';
 
 $dbhost = $_SESSION['db_host'];
 $dbuser = $_SESSION['db_user'];
