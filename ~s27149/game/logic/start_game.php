@@ -14,6 +14,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, 's27149');
 
+//endGame in case of some unexpected data
+Game::endGame();
+
 $quizId = $_GET['id'];
 $query = "SELECT * FROM quiz WHERE id = $quizId";
 $result = $mysqli->query($query);
