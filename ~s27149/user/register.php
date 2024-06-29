@@ -1,9 +1,9 @@
 <?php
-include_once './utils/initial_login.php';
+require_once './utils/initial_login.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include_once './logic/register_user.php';
+    require_once './logic/register_user.php';
 }
 
-include_once './views/wrappers/register_page.php';
+require_once './views/wrappers/register_page.php';
 ?>

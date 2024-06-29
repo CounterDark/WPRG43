@@ -21,7 +21,7 @@ class QuizElement implements JsonSerializable{
     }
 
     public function getCorrectAnswer() {
-        return $this->correct_answer;
+        return intval($this->correct_answer);
     }
 
     public function setQuestion($question) {

@@ -13,5 +13,5 @@ if (!isset($_SESSION['logged_in']) || (isset($_SESSION['logged_in']) && $_SESSIO
     exit();
 }
 
-include_once './logic/logout_user.php';
+require_once './logic/logout_user.php';
 ?>
