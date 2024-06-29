@@ -5,14 +5,6 @@ if (!isset($_SESSION)) {
 }
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
-});
-set_exception_handler(function ($e) {
-    error_log($e->getMessage());
-    error_log($e->getTraceAsString());
-    exit();
-});
 require_once __DIR__.'/'.'shared/logic/init_tables.php';
 
 $_SESSION['db_host'] = 'localhost';

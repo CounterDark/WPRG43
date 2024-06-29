@@ -10,8 +10,7 @@ require_once __DIR__.'/'.'../../../shared/utils/getRelativePathString.php';
 <?php
 require_once getRelativePath(__DIR__ ,'../../../shared/views/elements/global_head.html');
 echo "<link rel=\"stylesheet\" href=\"/~s27149/shared/views/css/global.css\">";
-echo "<link rel=\"stylesheet\" href=\"./views/css/navbar.css\">";
-echo "<link rel=\"stylesheet\" href=\"./views/css/main_menu.css\">";
+echo "<link rel=\"stylesheet\" href=\"./views/css/game.css\">";
 ?>
 </head>
 <body>

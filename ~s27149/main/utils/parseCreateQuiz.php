@@ -18,7 +18,7 @@
                 header('Location: ./create_quiz.php');
                 exit();
             }
-            if(str_starts_with($key, 'question')) {
+            if('question' === substr($key, 0, 8)) {
                 if($currentQuestionId !== null) {
                     $quizElement = serialize(new QuizElement($currentQuestionId, $currentQuestion, $answersForQuestion, $correctAnswer));
                     $formData["question".$currentQuestionId] = $quizElement;
@@ -29,11 +29,11 @@
                 $currentQuestion = $value;
                 continue;
             }
-            if(str_starts_with($key, 'answer')) {
+            if('answer' === substr($key, 0, 6)) {
                 $answersForQuestion[] = $value;
                 continue;
             }
-            if(str_starts_with($key, 'correct')) {
+            if('correct' === substr($key, 0, 7)) {
                 $correctAnswer = $value;
                 continue;
             }

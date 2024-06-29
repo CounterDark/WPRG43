@@ -3,6 +3,9 @@
         session_start();
     }
 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 'On');
+
     require_once __DIR__.'/'.'../../user/components/user.php';
     require_once __DIR__.'/'.'../../shared/components/quiz_element.php';
     require_once __DIR__.'/'.'../utils/parseCreateQuiz.php';
