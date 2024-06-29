@@ -12,4 +12,9 @@ if (!isset($_SESSION['db_host']) || !isset($_SESSION['db_user']) || !isset($_SES
     header('Location: ../index.php');
     exit();
 }
+
+if (!isset($_SESSION['user'])) {
+    header('Location: ../index.php');
+    exit();
+}
 ?>

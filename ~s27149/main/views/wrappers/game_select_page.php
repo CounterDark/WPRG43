@@ -8,7 +8,7 @@ include_once __DIR__.'/'.'../../../shared/utils/getRelativePathString.php';
 include_once getRelativePath(__DIR__ ,'../../../shared/views/elements/global_head.html');
 echo "<link rel=\"stylesheet\" href=\"/~s27149/shared/views/css/global.css\">";
 echo "<link rel=\"stylesheet\" href=\"./views/css/navbar.css\">";
-echo "<link rel=\"stylesheet\" href=\"./views/css/main_menu.css\">";
+echo "<link rel=\"stylesheet\" href=\"./views/css/game_select.css\">";
 ?>
 </head>
 <body>
@@ -20,7 +20,7 @@ echo "<link rel=\"stylesheet\" href=\"./views/css/main_menu.css\">";
         </ul>
     </navbar>
     <?php
-    include_once getRelativePath(__DIR__ ,'/../elements/main_menu_body.php');
+    include_once getRelativePath(__DIR__ ,'/../elements/game_select_body.php');
     ?>
 </body>
 </html>

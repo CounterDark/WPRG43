@@ -12,28 +12,28 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, 's27149');
 
 if (isset($_POST)) {
-    $form_data = [];
+    $formData = [];
     foreach ($_POST as $key => $value) {
-        $form_data[$key] = $mysqli->real_escape_string(htmlspecialchars($value));
+        $formData[$key] = $mysqli->real_escape_string(htmlspecialchars($value));
     }
-    if (empty($form_data['register']) || empty($form_data['password']) || empty($form_data['name'])) {
+    if (empty($formData['register']) || empty($formData['password']) || empty($formData['name'])) {
         $_SESSION['error'] = 'Wypełnij wszystkie pola';
         header('Location: register.php');
         exit();
     }
-    if (strlen($form_data['register']) < 3 || strlen($form_data['password']) < 3 || strlen($form_data['name']) < 3) {
+    if (strlen($formData['register']) < 3 || strlen($formData['password']) < 3 || strlen($formData['name']) < 3) {
         $_SESSION['error'] = 'Pola muszą zawierać co najmniej 3 znaki';
         header('Location: register.php');
         exit();
     }
-    if (strlen($form_data['register']) > 45 || strlen($form_data['password']) > 45 || strlen($form_data['name']) > 45) {
+    if (strlen($formData['register']) > 45 || strlen($formData['password']) > 45 || strlen($formData['name']) > 45) {
         $_SESSION['error'] = 'Pola nie mogą zawierać więcej niż 45 znaków';
         header('Location: register.php');
         exit();
     }
-    $login = $form_data['register'];
-    $password = password_hash($form_data['password'], PASSWORD_DEFAULT);
-    $name = $form_data['name'];
+    $login = $formData['register'];
+    $password = password_hash($formData['password'], PASSWORD_DEFAULT);
+    $name = $formData['name'];
     $role = 'user';
     error_log('check if user exists');
     $query = "SELECT * FROM users WHERE login = '$login' OR name = '$name'";
@@ -47,7 +47,7 @@ if (isset($_POST)) {
     $query = "INSERT INTO users (login, password, name, role) VALUES ('$login', '$password', '$name', '$role')";
     $success = $mysqli->query($query);
     if ($success) {
-        setcookie('registered_once', 'true');
+        setcookie('registered_once', 'true', 2147483640);
         header('Location: login.php');
     } else {
         header('Location: register.php');

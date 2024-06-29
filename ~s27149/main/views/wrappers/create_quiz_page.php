@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 include_once __DIR__.'/'.'../../../shared/utils/getRelativePathString.php';
 ?>
 <!DOCTYPE html>
@@ -8,7 +11,7 @@ include_once __DIR__.'/'.'../../../shared/utils/getRelativePathString.php';
 include_once getRelativePath(__DIR__ ,'../../../shared/views/elements/global_head.html');
 echo "<link rel=\"stylesheet\" href=\"/~s27149/shared/views/css/global.css\">";
 echo "<link rel=\"stylesheet\" href=\"./views/css/navbar.css\">";
-echo "<link rel=\"stylesheet\" href=\"./views/css/main_menu.css\">";
+echo "<link rel=\"stylesheet\" href=\"./views/css/create_quiz.css\">";
 ?>
 </head>
 <body>
@@ -20,7 +23,17 @@ echo "<link rel=\"stylesheet\" href=\"./views/css/main_menu.css\">";
         </ul>
     </navbar>
     <?php
-    include_once getRelativePath(__DIR__ ,'/../elements/main_menu_body.php');
+    if (isset($_SESSION['error'])) {
+        error_log("Error: ".$_SESSION['error']);
+        include_once getRelativePath(__DIR__ ,'/../elements/create_quiz_error.php');
+        unset($_SESSION['error']);
+    } else if (isset($_SESSION['success'])) {
+        error_log("Success: ".$_SESSION['success']);
+        include_once getRelativePath(__DIR__ ,'/../elements/create_quiz_success.php');
+        unset($_SESSION['success']);
+    } else {
+        include_once getRelativePath(__DIR__ ,'/../elements/create_quiz_body.php');
+    }
     ?>
 </body>
 </html>

@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
                     <a href="/~s27149/main/game_select.php">Wybierz quiz</a>
                 </div>
                 <div class="grid-elem">
-                    <a href="/~s27149/main/create.php">Utwórz quiz</a>
+                    <a href="/~s27149/main/create_quiz.php">Utwórz quiz</a>
                 </div>
             </div>
         </div>

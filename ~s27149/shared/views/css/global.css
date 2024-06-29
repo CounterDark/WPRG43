@@ -1,14 +1,13 @@
 body {
     background-color: #181f29;
-    width: 100%;
+    width: 100vw;
     height: auto;
     margin: 0;
     display: flex;
-    justify-content: center;
 }
 
 .content-wrapper {
-    width: 90%;
+    width: 90vw;
     margin: 0;
     height: auto;
 }
