@@ -47,7 +47,6 @@ if (isset($_POST)) {
     $query = "INSERT INTO users (login, password, name, role) VALUES ('$login', '$password', '$name', '$role')";
     $success = $mysqli->query($query);
     if ($success) {
-        setcookie('registered_once', 'true', 2147483640);
         header('Location: login.php');
     } else {
         header('Location: register.php');
